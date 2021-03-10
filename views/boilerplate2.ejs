@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paperboy</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/hamburgers.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    
+    
+</head>
+<body class="sb-nav-fixed">
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="" id="sidebar-wrapper">
+            <div class="sidebar-heading title">
+                <h1>Paperboy</h1>
+                
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="/" class="list-group-item list-group-item-action btn-2">News</a>
+                <a href="#" class="list-group-item list-group-item-action btn-2">Summarizer</a>
+                <a href="#" class="list-group-item list-group-item-action btn-2">Github</a>
+            </div>
+            <div class="sidebar-footer">
+                <p><em>work in progress</em></p>
+                <p>by</p>
+                <p>Allen Gao</p>
+                <p>&</p>
+                <p>Zhongchi Li</p>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- <a id="menu-toggle"><i class="fas fa-chevron-left"></i></a> -->
+        <button id="menu-toggle" class="hamburger hamburger--spring is-active" type="button">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
+
+        
+        <%- body %> 
+        
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    
+        <script>
+            // Menu toggle scripts
+            $("#menu-toggle").click(function(e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+                $("#menu-toggle").toggleClass('is-active');
+                $("#menu-toggle").toggleClass("toggled");
+            });
+    
+    
+            $(window).resize(function(){
+                console.log('resize called');
+                var width = $(window).width();
+                const div = document.querySelector("#menu-toggle");
+                // if(width <= 768 && div.classList.contains("toggled")){
+                //     $("#menu-toggle").removeClass('is-active');
+                // }
+                // else if(width > 768 && !div.classList.contains("toggled")){
+                //     $("#menu-toggle").addClass('is-active');
+                // }
+                if(width <= 768){
+                    $("#menu-toggle").removeClass('is-active');
+                }
+                else if(width > 768){
+                    $("#menu-toggle").addClass('is-active');
+                }
+            })
+            .resize();//trigger the resize event on page load.
+
+            // Scrolling animation scripts
+            $(document).ready(function() {
+                handleScroll();
+                document.addEventListener('scroll', function(event) {
+                    handleScroll();
+                }, true);
+                
+            });
+            
+            function handleScroll() {
+                $('.slide-in').each( function(i, elem) {
+                    var object_top = $(elem).offset().top + $(elem).outerHeight()/5;
+                    var screen_bottom = $(window).scrollTop() + $(window).height();
+    
+                    if (screen_bottom > object_top) {
+                        $(elem).css({
+                            'opacity': '1',
+                            'transform': 'translateY(0%)'
+                        });
+                    }
+                }); 
+                $('.slide-in-h').each( function(i, elem) {
+                    var object_left = $(elem).offset().left + $(elem).outerWidth()/5;
+                    var screen_right = $(window).scrollLeft() + $(window).width();
+                    
+                    if (screen_right > object_left) {
+                        $(elem).css({
+                            'opacity': '1',
+                            'transform': 'translateX(0%)'
+                        });
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>

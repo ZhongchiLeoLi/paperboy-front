@@ -1,0 +1,53 @@
+<% layout('boilerplate2') %>
+<div class="show-wrapper">
+    <div class="show-container">
+        <div class="show-col">
+            <p class="bold"><%= item.Info.Date.toString().slice(0, 10) %></p>
+            <h1><%= item.Article.Title %></h1>
+            <% if(item.Info.Authors.length) {%> 
+            <p class="bold">By <%for(let author of item.Info.Authors){%><%=author%>,<%}%></p>
+            <% } %> 
+            <p class="trailtext"><%= item.Article.Trailtext %></p>
+            <% if(item.Image.ImageFileURL.length) {%> 
+            <img class="news-img" src="<%=item.Image.ImageFileURL%>" alt="<%=item.Image.Caption%>">
+            <p class="caption"><%=item.Image.Caption%></p>
+            <% } %> 
+            <a class="btn btn-0" href="<%=item.Info.URL%>" target="_blank">View full article</a>
+            <br>
+            <br>
+        </div>
+        <div class="show-col">
+            <% let sumwordcount = 0; %> 
+            <% item.Article.SummaryText.forEach( function(scentence, i) { %> 
+                <% sumwordcount += scentence.split(" ").length; %> 
+                <p><%= scentence %> </p>
+            <% }) %> 
+            <br>
+            <br>
+            <p class="result">Word Count: <%= sumwordcount %></p>
+            <p class="result">Reduced From Original By: <%=(((item.Article.FullWordCount - sumwordcount)/item.Article.FullWordCount)*100).toFixed(2)%>%</p>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="hdivider"></div>
+    <br>
+    <div class="keep-reading slide-in">
+        <p class="kr">Keep reading...</p>
+        
+        <div>
+            <% if(next.Image.ImageFileURL.length) {%> 
+            <div class="show-col">
+                <br>
+                <img class="news-img" src="<%=next.Image.ImageFileURL%>" alt="<%=next.Image.Caption%>">
+            </div>
+            <% } %> 
+            <div class="show-col">
+                <p class="bold"><%= next.Info.Date.toString().slice(0, 10) %></p>
+                <p class="next-head"><%= next.Article.Title %></p>
+                <p><%= next.Article.TrailText %></p>
+                <a class="btn btn-0" href="/<%=next.ObjectId%>">Start reading</a>
+            </div>
+        </div>
+    </div>
+</div>

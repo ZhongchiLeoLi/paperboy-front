@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+html {
+    background: url('../images/meshgrad.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    margin-top: 4rem;
+    display: flex;
+    min-height: 90vh;
+    flex-direction: column;
+}
+
+.section {
+    padding : 4rem 0rem;
+}
+
+.footer {
+    margin-top: 5rem;
+    background: none;
+}
+
+h1 {
+    color: brown;
+}
+
+form{
+    display: inline;
+}
+
+.control {
+    display: inline;
+}
+
+#clear {
+    display: inline;
+}
+
+.navbar {
+    background: none;
+}
+
+.is-fixed-top.scrolled {
+  background-color: #fff !important;
+  transition: background-color 200ms linear;
+}
+
+@media screen and (min-width: 835px) {
+    .navbar, .navbar-end, .navbar-menu, .navbar-start {
+        align-items: stretch;
+        display: flex;
+        box-shadow: none    ;
+    }
+}
+
+@media screen and (min-width: 835px) {
+    .navbar {
+        min-height: 3.25rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .bd-navbar {
+        padding: 1rem 2rem;
+    }
+}
+
+@media screen and (min-width: 1216px) {
+    .bd-navbar {
+        font-size: 1.125rem;
+        padding: 1.5rem 4rem;
+    }
+}
+/* 
+#wrapper {
+    flex: 1;
+} */
+
+@media screen and (min-width: 1216px) {
+    .container:not(.is-max-desktop) {
+      max-width: 95vw;
+    }
+  }
+  
+  @media screen and (min-width: 1024px) {
+      .container {
+          max-width: 95vw;
+      }
+  }
