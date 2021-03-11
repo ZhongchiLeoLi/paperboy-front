@@ -16,10 +16,17 @@ app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.urlencoded({extended: true}));
 
+const paperboy_back = process.env.PAPERBOY_BACK || "localhost";
+const paperboy_back_port = process.env.PAPERBOY_BACK_PORT || 8080;
+
+console.log(`${paperboy_back}:${paperboy_back_port}`)
 
 app.get('/', async function(req,res){
-  const result = await axios.get('http://host.docker.internal:8080/api/summaries/world?size=5')
+  console.log("Got a request!");
+  // const result = await axios.get('http://host.docker.internal:8080/api/summaries/world?size=5')
+  const result = await axios.get(`http://${paperboy_back}:${paperboy_back_port}/api/summaries/world?size=5`);
   // const result = await axios.get('http://localhost:8080/api/summaries/world?size=5')
+  console.log("Found news!");
   const news = result.data.Summaries;
   res.render('new_index', {news});
 })
@@ -43,11 +50,16 @@ app.get('/', async function(req,res){
 // })
 
 app.get('/:id', async function(req,res){
-    const result = await axios.get(`http://host.docker.internal:8080/api/summary?id=${req.params.id}`);
+    // const result = await axios.get(`http://host.docker.internal:8080/api/summary?id=${req.params.id}`);
     // const result = await axios.get(`http://localhost:8080/api/summary?id=${req.params.id}`);
+    console.log(req.params)
+    console.log(`http://${paperboy_back}:${paperboy_back_port}/api/summary?id=${req.params.id}`);
+    const result = await axios.get(`http://${paperboy_back}:${paperboy_back_port}/api/summary?id=${req.params.id}`);
     const item = result.data;
-    const next_result = await axios.get(`http://host.docker.internal:8080/api/summaries/world?id=${req.params.id}&size=1`);
+    // const next_result = await axios.get(`http://host.docker.internal:8080/api/summaries/world?id=${req.params.id}&size=1`);
     // const next_result = await axios.get(`http://localhost:8080/api/summaries/world?id=${req.params.id}&size=1`);
+    console.log(`http://${paperboy_back}:${paperboy_back_port}/apu/summaries/world?id=${req.params.id}&size=1`);
+    const next_result = await axios.get(`http://${paperboy_back}:${paperboy_back_port}/apu/summaries/world?id=${req.params.id}&size=1`)
     const next = next_result.data.Summaries[0];
     res.render('show', {item, next});
 })
