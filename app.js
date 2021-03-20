@@ -59,7 +59,7 @@ app.get('/:id', async function(req,res){
     // const next_result = await axios.get(`http://host.docker.internal:8080/api/summaries/world?id=${req.params.id}&size=1`);
     // const next_result = await axios.get(`http://localhost:8080/api/summaries/world?id=${req.params.id}&size=1`);
     console.log(`http://${paperboy_back}:${paperboy_back_port}/apu/summaries/world?id=${req.params.id}&size=1`);
-    const next_result = await axios.get(`http://${paperboy_back}:${paperboy_back_port}/apu/summaries/world?id=${req.params.id}&size=1`)
+    const next_result = await axios.get(`http://${paperboy_back}:${paperboy_back_port}/api/summaries/world?id=${req.params.id}&size=1`)
     const next = next_result.data.Summaries[0];
     res.render('show', {item, next});
 })
