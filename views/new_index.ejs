@@ -1,59 +1,79 @@
 <% layout('boilerplate2') %>
 
-
-    <p class="cta bold">Scroll  <i class="fas fa-long-arrow-alt-right"></i></i></p>
+    <a class="backToFront bold" style="color: #1b1f24;"><i class="fas fa-long-arrow-alt-left"> </i>Back to front</a>
+    <p class="cta bold" style="color: #1b1f24;">Scroll  <i class="fas fa-long-arrow-alt-right"></i></i></p>
     <div id="page-content-wrapper">
-        <div class="wrapper">
-        <% news.forEach(function (item, i) {%>
-            <% if(item && i < 10) {%> 
-            <% if(i%2 == 0) {%> 
-                <div class="news-container slide-in-h" >
-                    <div>
-                        <p class="bold"><%= item.Info.Date.toString().slice(0, 10) %></p>
-                        <h1><%= item.Article.Title %></h1>
-                        <% let snippet = item.Article.SummaryText[0].concat(item.Article.SummaryText[1]).slice(0, 200); %> 
-                        <% if(!((/[a-zA-Z]/).test(snippet.charAt(snippet.length - 1)))) { snippet = snippet.slice(0, snippet.length - 1) }%> 
-                        <!-- <p><%=snippet%>...</p> -->
-                        <p><%= item.Article.TrailText %></p>
-                        <br>
-                        <% if(item.Image.ImageFileURL.length) {%> 
-                        <img class="news-img" src="<%=item.Image.ImageFileURL%>" alt="<%=item.Image.Caption%>">
-                        <% } %> 
-                        <a class="btn btn-0" href="/<%=item.ObjectId%>">Start reading</a>
-                    </div>
-                </div>
-                <div class="divider"></div>
-            <% } else {%> 
-                <div class="news-container slide-in-h" >
-                    <div>
-                        <% if(item.Image.ImageFileURL.length) {%> 
-                            <img class="news-img" src="<%=item.Image.ImageFileURL%>" alt="<%=item.Image.Caption%>">
-                            <% } %> 
-                        <br>
-                        <br>
-                        <p class="bold"><%= item.Info.Date.toString().slice(0, 10) %></p>
-                        <h1><%= item.Article.Title %></h1>
-                        <% let snippet = item.Article.SummaryText[0].concat(" ", item.Article.SummaryText[1]).slice(0, 200); %> 
-                        <% if(!((/[a-zA-Z]/).test(snippet.charAt(snippet.length - 1)))) { snippet = snippet.slice(0, snippet.length - 1) }%>
-                        <!-- <p><%=snippet%>...</p> -->
-                        <p><%= item.Article.TrailText %></p>
-                        <a class="btn btn-0" href="/<%=item.ObjectId%>">Start reading</a>
-                    </div>
-                </div>
-                <% if(i != news.length - 1) {%> 
-                    <div class="divider"></div>
+        <p class="type" style="display: none;"><%=type%></p>
+        <% let mg = 2; %> 
+        <% if(type == 'search') {%> 
+            <% mg = 4; %> 
+        <% } %> 
+        <div class="wrapper" style="margin-top: <%=mg%>rem;">
+            
+            <div class="search">
+                <% if(type == 'search') {%> 
+                    <h2>Search results for "<%= query %> "</h2>
+                    <form class="d-flex" action="/search" method='GET'>
+                        <input class="form-control me-2" name="q" type="search" placeholder="Search all news" aria-label="Search" required>
+                        <button class="search-btn" style="margin-top: 0;" type="submit">Search</button>
+                        </form>
+                <% } else {%> 
+                    <h2><%=type[0].toUpperCase() + type.slice(1)%> News</h2>
                 <% } %> 
+            </div>
+            
+            <% if(!news) {%> 
+                <h1 style="margin-left: 5rem; margin-top: -5rem;">No search results</h1>
+            <% } else { %> 
+                <% let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];  %>
+                <% news.forEach(function (item, i) {%>
+                    <% if(item) {%> 
+                        <% if(i%2 == 0) {%> 
+                            <div class="news-container slide-in-h" >
+                                <div>
+                                    <% let date = new Date( Date.parse(item.Info.Date)); %> 
+                                    <div class="date-row" >
+                                        <p class="bold"><%= days[date.getDay()] + date.toGMTString().slice(3, 16)%></p>
+                                        <a class="tag" href="/<%=item.Info.SectionId%>"><%=item.Info.SectionId%></a>
+                                    </div>
+                                    <h1><%= item.Article.Title %></h1>
+                                    
+                                    <p><%= item.Article.TrailText %></p>
+                                    <br>
+                                    <% if(item.Image.ImageFileURL.length) {%> 
+                                    <img class="news-img" src="<%=item.Image.ImageFileURL%>" alt="<%=item.Image.Caption%>">
+                                    <% } %> 
+                                    <a class="btn btn-0" href="/<%=type%>/<%=item.ObjectId%><%= type == 'search' ? '?q='+query : ''%>">Start reading</a>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                        <% } else {%> 
+                            <div class="news-container slide-in-h" >
+                                <div>
+                                    <% if(item.Image.ImageFileURL.length) {%> 
+                                        <img class="news-img" src="<%=item.Image.ImageFileURL%>" alt="<%=item.Image.Caption%>">
+                                        <br>
+                                        <br>
+                                    <% } %> 
+                                    
+                                    <% let date = new Date( Date.parse(item.Info.Date)); %> 
+                                    <div class="date-row">
+                                        <p class="bold"><%= days[date.getDay()] + date.toGMTString().slice(3, 16)%></p>
+                                        <a class="tag" href="/<%=item.Info.SectionId%>"><%=item.Info.SectionId%></a>
+                                    </div>
+                                    <h1><%= item.Article.Title %></h1>
+                                    
+                                    <p><%= item.Article.TrailText %></p>
+                                    <a class="btn btn-0" href="/<%=type%>/<%=item.ObjectId%><%= type == 'search' ? '?q='+query : ''%>">Start reading</a>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                        <% } %> 
+                    <% } %> 
+                <% }) %> 
             <% } %> 
-            <% } %> 
-        <% }) %> 
         </div>
     </div>
 
-<script>
-    var item = document.getElementById('page-content-wrapper');
-    
-    window.addEventListener('wheel', function(e) {
-        if (e.deltaY > 0) item.scrollLeft += 100;
-        else item.scrollLeft -= 100;
-    });
-</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/hScroll.js"></script>
