@@ -1,13 +1,17 @@
-<% layout('boilerplate2') %>
+<% layout('boilerplate') %>
 <div class="show-wrapper">
     <div class="show-container">
+        <% let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];  %>
         <div class="show-col">
-            <p class="bold"><%= item.Info.Date.toString().slice(0, 10) %></p>
+            <a href="/<%=type%><%= type == 'search' ? '?q='+query : ''%>" class="back"><p><i class="fas fa-angle-double-left"></i> Back to <%=type%> news</p></a>
+            <br>
+            <% let date1 = new Date( Date.parse(item.Info.Date)); %> 
+            <p class="bold"><%= days[date1.getDay()] + date1.toGMTString().slice(3, 16) %></p>
             <h1><%= item.Article.Title %></h1>
             <% if(item.Info.Authors.length) {%> 
             <p class="bold">By <%for(let author of item.Info.Authors){%><%=author%>,<%}%></p>
             <% } %> 
-            <p class="trailtext"><%= item.Article.Trailtext %></p>
+            <p class="trailtext"><%= item.Article.TrailText %></p>
             <% if(item.Image.ImageFileURL.length) {%> 
             <img class="news-img" src="<%=item.Image.ImageFileURL%>" alt="<%=item.Image.Caption%>">
             <p class="caption"><%=item.Image.Caption%></p>
@@ -17,37 +21,52 @@
             <br>
         </div>
         <div class="show-col">
-            <% let sumwordcount = 0; %> 
             <% item.Article.SummaryText.forEach( function(scentence, i) { %> 
-                <% sumwordcount += scentence.split(" ").length; %> 
-                <p><%= scentence %> </p>
+                <p><%= scentence.Sentence %> </p>
             <% }) %> 
             <br>
+            <p class="result">Reduced From Original By: <%=(((item.Article.FullLength - item.Article.SummLength)/item.Article.FullLength)*100).toFixed(2)%>%</p>
             <br>
-            <p class="result">Word Count: <%= sumwordcount %></p>
-            <p class="result">Reduced From Original By: <%=(((item.Article.FullWordCount - sumwordcount)/item.Article.FullWordCount)*100).toFixed(2)%>%</p>
+            <br>
+            <p class="bold" style="margin-bottom: 0;">Related queries</p>
+            <% for(let i = 0; i < 5; i++) {%>
+                <a class="btn btn-0" style="margin-top: 0.5rem;" href="/search?q=<%=item.Article.Keywords[i].Word%>"><%= item.Article.Keywords[i].Word %> </a>
+            <% } %> 
         </div>
     </div>
     <br>
     <br>
     <div class="hdivider"></div>
     <br>
+    <% if(related.length) { %> 
     <div class="keep-reading slide-in">
-        <p class="kr">Keep reading...</p>
-        
+        <p class="kr">Related stories</p>
         <div>
-            <% if(next.Image.ImageFileURL.length) {%> 
-            <div class="show-col">
-                <br>
-                <img class="news-img" src="<%=next.Image.ImageFileURL%>" alt="<%=next.Image.Caption%>">
-            </div>
+            <% for(let i = 0; i < related.length - 1; i++) {%> 
+                <div class="related-news">
+                    <% if(related[i].Image.ImageFileURL.length) {%> 
+                        <img class="news-img" src="<%=related[i].Image.ImageFileURL%>" alt="<%=related[i].Image.Caption%>">
+                    <% } %> 
+                    <% let date2 = new Date( Date.parse(related[i].Info.Date)); %> 
+                    <p class="bold"><%= days[date2.getDay()] + date2.toGMTString().slice(3, 16) %></p>
+                    <p class="next-head"><%= related[i].Article.Title %></p>
+                    <a class="btn btn-0" href="/<%=type%>/<%=related[i].ObjectId%><%= type == 'search' ? '?q='+query : ''%>">Start reading</a>
+                </div>
+                <div class="divider"></div>
             <% } %> 
-            <div class="show-col">
-                <p class="bold"><%= next.Info.Date.toString().slice(0, 10) %></p>
-                <p class="next-head"><%= next.Article.Title %></p>
-                <p><%= next.Article.TrailText %></p>
-                <a class="btn btn-0" href="/<%=next.ObjectId%>">Start reading</a>
+            <div class="related-news">
+                <% if(related[related.length - 1].Image.ImageFileURL.length) {%> 
+                    <img class="news-img" src="<%=related[related.length - 1].Image.ImageFileURL%>" alt="<%=related[related.length - 1].Image.Caption%>">
+                <% } %> 
+                <% let date2 = new Date( Date.parse(related[related.length - 1].Info.Date)); %> 
+                <p class="bold"><%= days[date2.getDay()] + date2.toGMTString().slice(3, 16) %></p>
+                <p class="next-head"><%= related[related.length - 1].Article.Title %></p>
+                <a class="btn btn-0" href="/<%=type%>/<%=related[related.length - 1].ObjectId%><%= type == 'search' ? '?q='+query : ''%>">Start reading</a>
             </div>
         </div>
     </div>
+    <% } %> 
 </div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/vScroll.js"></script>

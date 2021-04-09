@@ -1,0 +1,118 @@
+<% layout('boilerplate') %>
+<link rel="stylesheet" href="/css/home.css">
+
+<div id="page-content-wrapper">
+    <div class="home-wrapper">
+        <div class="headline row">
+            <div class="col-lg-6">
+                <h1 class="">Paperboy Headlines</h1>
+            </div>
+            <div class="col-lg-4">
+                <form class="d-flex" action="/search" method='GET'>
+                    <input class="form-control me-2" name="q" type="search" placeholder="Search all news" aria-label="Search" required>
+                    <button class="search-btn" style="margin-top: 0;" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        <div class="home-container">
+            <div class="hdivider hidden"></div>
+            <% let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];  %>
+            <div class="home-col slide-in">
+                <div>
+                    <h1 class="smaller"><%= news[1].Article.Title %></h1>
+                    <% let date1 = new Date( Date.parse(news[1].Info.Date)); %> 
+                    <div class="date-row" >
+                        <p class="bold"><%= days[date1.getDay()] + date1.toGMTString().slice(3, 16)%></p>
+                        <a class="tag" href="/<%=news[1].Info.SectionId%>"><%=news[1].Info.SectionId%></a>
+                    </div>
+                    <p><%= news[1].Article.TrailText %></p>
+                    <a class="btn btn-0" href="/<%=news[1].Info.SectionId%>/<%=news[1].ObjectId%>">Start reading</a>
+                </div>
+                <div class="hdivider"></div>
+                <div>
+                    <h1 class="smaller" ><%= news[2].Article.Title %></h1>
+                    <% let date2 = new Date( Date.parse(news[2].Info.Date)); %> 
+                    <div class="date-row" >
+                        <p class="bold"><%= days[date2.getDay()] + date2.toGMTString().slice(3, 16)%></p>
+                        <a class="tag" href="/<%=news[2].Info.SectionId%>"><%=news[2].Info.SectionId%></a>
+                    </div>
+                    <p><%= news[2].Article.TrailText %></p>
+                    <a class="btn btn-0" href="/<%=news[2].Info.SectionId%>/<%=news[2].ObjectId%>">Start reading</a>
+                </div>
+            </div>
+            <div class="hdivider hidden"></div>
+            <div class="divider"></div>
+            <div class="home-col slide-in">
+                <% if(news[0].Image.ImageFileURL.length) {%>
+                    <img style="height: 22rem;" class="news-img" src="<%=news[0].Image.ImageFileURL%>" alt="<%=news[0].Image.Caption%>">
+                    <br>
+                    <br>
+                <% } %> 
+                <% let date0 = new Date( Date.parse(news[0].Info.Date)); %> 
+                <div class="date-row">
+                    <p class="bold"><%= days[date0.getDay()] + date0.toGMTString().slice(3, 16)%></p>
+                    <a class="tag" href="/<%=news[0].Info.SectionId%>"><%=news[0].Info.SectionId%></a>
+                </div>
+                <h1><%= news[0].Article.Title %></h1>
+                <p><%= news[0].Article.TrailText %></p>
+                <a class="btn btn-0" href="/<%=news[0].Info.SectionId%>/<%=news[0].ObjectId%>">Start reading</a>
+            </div>
+            <div class="hdivider hidden"></div>
+            <div class="divider"></div>
+            <div class="home-col slide-in">
+                <div>
+                    <h1><%= news[3].Article.Title %></h1>
+                    <% let date3 = new Date( Date.parse(news[3].Info.Date)); %> 
+                    <div class="date-row">
+                        <p class="bold"><%= days[date3.getDay()] + date3.toGMTString().slice(3, 16)%></p>
+                        <a class="tag" href="/<%=news[3].Info.SectionId%>"><%=news[3].Info.SectionId%></a>
+                    </div>
+                    <a class="btn btn-0" href="/<%=news[3].Info.SectionId%>/<%=news[3].ObjectId%>">Start reading</a>
+                </div>
+                <div class="hdivider"></div>
+                <div>
+                    <h1><%= news[4].Article.Title %></h1>
+                    <% let date4 = new Date( Date.parse(news[4].Info.Date)); %> 
+                    <div class="date-row">
+                        <p class="bold"><%= days[date4.getDay()] + date4.toGMTString().slice(3, 16)%></p>
+                        <a class="tag" href="/<%=news[4].Info.SectionId%>"><%=news[4].Info.SectionId%></a>
+                    </div>
+                    <a class="btn btn-0" href="/<%=news[4].Info.SectionId%>/<%=news[4].ObjectId%>">Start reading</a>
+                </div>
+            </div>
+            <div class="hdivider hidden"></div>
+            <div class="divider"></div>
+            <div class="home-col slide-in">
+                <div>
+                    <h1 class="smallest"><%= news[5].Article.Title %></h1>
+                    <% let date5 = new Date( Date.parse(news[5].Info.Date)); %> 
+                    <div class="date-row">
+                        <p class="bold"><%= days[date5.getDay()] + date5.toGMTString().slice(3, 16)%></p>
+                        <a class="tag" href="/<%=news[5].Info.SectionId%>"><%=news[5].Info.SectionId%></a>
+                    </div>
+                    <% if(news[5].Image.ImageFileURL.length) {%>
+                        <img style="height: 8rem;" class="news-img" src="<%=news[5].Image.ImageFileURL%>" alt="<%=news[5].Image.Caption%>">
+                    <% } %> 
+                    <a class="btn btn-0" href="/<%=news[5].Info.SectionId%>/<%=news[5].ObjectId%>">Start reading</a>
+                </div>
+                <div class="hdivider"></div>
+                <div>
+                    <h1 class="smallest"><%= news[6].Article.Title %></h1>
+                    <% let date6 = new Date( Date.parse(news[6].Info.Date)); %> 
+                    <div class="date-row">
+                        <p class="bold"><%= days[date6.getDay()] + date6.toGMTString().slice(3, 16)%></p>
+                        <a class="tag" href="/<%=news[6].Info.SectionId%>"><%=news[6].Info.SectionId%></a>
+                    </div>
+                    <% if(news[6].Image.ImageFileURL.length) {%>
+                        <img style="height: 8rem;" class="news-img" src="<%=news[6].Image.ImageFileURL%>" alt="<%=news[6].Image.Caption%>">
+                    <% } %> 
+                    <a class="btn btn-0" href="/<%=news[6].Info.SectionId%>/<%=news[6].ObjectId%>">Start reading</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/hScroll.js"></script>
+<script src="/js/vScroll.js"></script>
