@@ -1,4 +1,4 @@
-<% layout('boilerplate2') %>
+<% layout('boilerplate') %>
 <div class="show-wrapper">
     <div class="show-container">
         <% let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];  %>
@@ -25,14 +25,12 @@
                 <p><%= scentence.Sentence %> </p>
             <% }) %> 
             <br>
-            <br>
-            <p class="result">Character Count: <%= item.Article.SummLength %></p>
             <p class="result">Reduced From Original By: <%=(((item.Article.FullLength - item.Article.SummLength)/item.Article.FullLength)*100).toFixed(2)%>%</p>
             <br>
             <br>
-            <p class="bold">Related queries</p>
+            <p class="bold" style="margin-bottom: 0;">Related queries</p>
             <% for(let i = 0; i < 5; i++) {%>
-                <a class="btn btn-0" href="/search?q=<%=item.Article.Keywords[i].Word%>"><%= item.Article.Keywords[i].Word %> </a>
+                <a class="btn btn-0" style="margin-top: 0.5rem;" href="/search?q=<%=item.Article.Keywords[i].Word%>"><%= item.Article.Keywords[i].Word %> </a>
             <% } %> 
         </div>
     </div>
@@ -43,7 +41,6 @@
     <% if(related.length) { %> 
     <div class="keep-reading slide-in">
         <p class="kr">Related stories</p>
-        
         <div>
             <% for(let i = 0; i < related.length - 1; i++) {%> 
                 <div class="related-news">
@@ -53,7 +50,6 @@
                     <% let date2 = new Date( Date.parse(related[i].Info.Date)); %> 
                     <p class="bold"><%= days[date2.getDay()] + date2.toGMTString().slice(3, 16) %></p>
                     <p class="next-head"><%= related[i].Article.Title %></p>
-                    <!-- <p class="trail"><%= related[i].Article.TrailText %></p> -->
                     <a class="btn btn-0" href="/<%=type%>/<%=related[i].ObjectId%><%= type == 'search' ? '?q='+query : ''%>">Start reading</a>
                 </div>
                 <div class="divider"></div>
@@ -65,7 +61,6 @@
                 <% let date2 = new Date( Date.parse(related[related.length - 1].Info.Date)); %> 
                 <p class="bold"><%= days[date2.getDay()] + date2.toGMTString().slice(3, 16) %></p>
                 <p class="next-head"><%= related[related.length - 1].Article.Title %></p>
-                <!-- <p><%= related[related.length - 1].Article.TrailText %></p> -->
                 <a class="btn btn-0" href="/<%=type%>/<%=related[related.length - 1].ObjectId%><%= type == 'search' ? '?q='+query : ''%>">Start reading</a>
             </div>
         </div>

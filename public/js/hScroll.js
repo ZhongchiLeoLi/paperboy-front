@@ -13,11 +13,6 @@ $('.backToFront').on('click', function (e) {
 })
 
 $(function() {
-    // $(window).on("unload", function(e) {
-    //    var scrollPosition = $('#page-content-wrapper').scrollLeft();
-    //    localStorage.setItem("scrollPosition", scrollPosition);
-
-    // });
     $('.btn-0').each( function(i, elem) {
         $(elem).click(function() {
             var scrollPosition = $('#page-content-wrapper').scrollLeft();
@@ -45,13 +40,11 @@ function preventDefaultForScrollKeys(e) {
     }
 }
 
-// call this to Disable
 function disableScroll() {
     window.removeEventListener('wheel', horizontalScroll, false);
     console.log("scroll disabled");
 }
 
-// call this to Enable
 function enableScroll() {
     window.addEventListener('wheel', horizontalScroll, false);
     console.log("scroll enabled");
@@ -60,7 +53,7 @@ function enableScroll() {
 
 const container = document.querySelector('.wrapper');
 const loading = document.querySelector('.loading');
-// Scrolling animation scripts
+
 $(document).ready(function() {
     handleScroll();
     document.addEventListener('scroll', async function(event) {
