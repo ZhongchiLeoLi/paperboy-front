@@ -44,7 +44,7 @@
             <div class="divider"></div>
             <div class="home-col slide-in">
                 <% if(news[0].Image.ImageFileURL.length) {%>
-                    <img style="height: 22rem;" class="news-img" src="<%=news[0].Image.ImageFileURL%>" alt="<%=news[0].Image.Caption%>">
+                    <img class="news-img big-img" src="<%=news[0].Image.ImageFileURL%>" alt="<%=news[0].Image.Caption%>">
                     <br>
                     <br>
                 <% } %> 
@@ -91,7 +91,7 @@
                         <a class="tag" href="/<%=news[5].Info.SectionId%>"><%=news[5].Info.SectionId%></a>
                     </div>
                     <% if(news[5].Image.ImageFileURL.length) {%>
-                        <img style="height: 8rem;" class="news-img" src="<%=news[5].Image.ImageFileURL%>" alt="<%=news[5].Image.Caption%>">
+                        <img class="news-img smaller-img" src="<%=news[5].Image.ImageFileURL%>" alt="<%=news[5].Image.Caption%>">
                     <% } %> 
                     <a class="btn btn-0" href="/<%=news[5].Info.SectionId%>/<%=news[5].ObjectId%>">Start reading</a>
                 </div>
@@ -104,7 +104,7 @@
                         <a class="tag" href="/<%=news[6].Info.SectionId%>"><%=news[6].Info.SectionId%></a>
                     </div>
                     <% if(news[6].Image.ImageFileURL.length) {%>
-                        <img style="height: 8rem;" class="news-img" src="<%=news[6].Image.ImageFileURL%>" alt="<%=news[6].Image.Caption%>">
+                        <img class="news-img smaller-img" src="<%=news[6].Image.ImageFileURL%>" alt="<%=news[6].Image.Caption%>">
                     <% } %> 
                     <a class="btn btn-0" href="/<%=news[6].Info.SectionId%>/<%=news[6].ObjectId%>">Start reading</a>
                 </div>

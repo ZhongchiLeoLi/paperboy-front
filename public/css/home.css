@@ -43,7 +43,7 @@ form {
     border: 1px solid currentColor;
     position: relative;
     transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-  }
+}
 
   .search-btn{
     font-size: 0.9rem;
@@ -59,10 +59,10 @@ form {
     background: #1b1f24;
   }
   
-  .search-btn:hover {
+.search-btn:hover {
     border-color: #393c3f;
     background-color: #393c3f;
-  }
+}
   
 
 .home-wrapper{
@@ -80,11 +80,11 @@ form {
   }
 
 
-  #page-content-wrapper  {
+#page-content-wrapper  {
     overflow: unset;
     position: relative;
     height: unset;
-  }
+}
 
 
 .home-wrapper.toggled {
@@ -113,7 +113,15 @@ form {
     margin: 2rem auto;
     border-top: 1px solid;
     opacity: 25%;
-  }
+}
+
+.big-img {
+    height: 30vh;
+}
+
+.smaller-img {
+    height: 12vh;
+}
 
 @media (min-width: 785px) {
     #page-content-wrapper {
@@ -122,9 +130,75 @@ form {
         height: 100vh;
     }
     .home-wrapper{
+      margin-left: 16rem;
+      margin-right: 2rem;
+      min-width: 1000px;
+    }
+    .home-wrapper.toggled{
+        margin-left: 4rem;
+        margin-right: 4rem;
+    }
+    .home-container{
+        flex-direction: row;
+    }
+    .home-col {
+        margin: 0rem 2rem;
+        width: 25%;
+    }
+    .home-col:nth-child(8) {
+        width: 20%;
+    }
+    .home-col:nth-child(5) {
+        width: 30%;
+    }
+    .home-col:last-child {
+        padding-bottom: 0rem;
+    }
+    .headline {
+        margin-top: 2rem !important; 
+        padding-left: 3rem;
+        padding-right: 3rem;
+        width: 100%; 
+        font-size: 2.3rem;
+    }
+    .home-wrapper h1 {
+        font-size: 1.5rem !important;
+        font-weight: 600;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+    .home-wrapper .smaller{
+        font-size: 1.2rem !important;
+    }
+    
+    .home-wrapper .smallest {
+        font-size: 1rem !important;
+    }
+    p {
+        font-size: 0.9rem;
+    }
+    .hidden {
+        display: none;
+    }
+    .tag {
+        font-size: 0.6rem;
+    }
+    .btn {
+        margin-top: 0.5rem;
+        font-size: 0.7rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    #page-content-wrapper {
+        overflow: hidden;
+        position: relative;
+        height: 100vh;
+    }
+    .home-wrapper{
       margin-left: 18rem;
       margin-right: 3rem;
-      min-width: 1200px;
+      min-width: 1000px;
     }
     .home-wrapper.toggled{
         margin-left: 4rem;
@@ -171,5 +245,11 @@ form {
     }
     .hidden {
         display: none;
+    }
+    .tag {
+        font-size: 0.8rem;
+    }
+    .btn {
+        font-size: 0.9rem;
     }
 }
