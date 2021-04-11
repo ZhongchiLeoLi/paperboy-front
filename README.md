@@ -6,7 +6,7 @@
 
 The frontend was built with **Node**, **Express** and **EJS templating engine**. It fetches all the news from the backend through **axios** requests and displays them nicely with custom css scripts and **bootstrap**. The code is then containerized using **Docker** and deployed together with the backend using **GCP Kubernetes Engine**.
 
-## This website features 
+## This Website Features 
 
 * **Fully responsive layout**: all pages are responsive to fit any screen sizes
 * **Horizontal infinite scrolling**: more news will be fetched and added when the end of the page has been reached
