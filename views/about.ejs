@@ -8,25 +8,32 @@
         <div class="show-col">
             <h2>About</h2>
             <br>
-            <p><b>Paperboy</b> is a summarized news website for people us, who do not like to read long news articles. It is powered by <a href="https://github.com/algao1/basically" target="_blank"><em>basically</em></a>, a homemade Go implementation of the TextRank and Biased TextRank algorithm.</p>
-            <p>We utilize <em>The Guardian</em> APIs and updates hourly to bring you the latest summarized news.</p>
+            <p>Paperboy is a news website for people like us, who do not like to read long news articles. It is powered by <a href="https://github.com/algao1/basically" target="_blank"><b class="bold">basically</b></a>, a homemade Go implementation of the TextRank and Biased TextRank algorithm that extracts keywords, removes transition phrases and other unimportant details.</p>
+            <p>We utilize <a href="https://www.theguardian.com/international" target="_blank"><b class="bold">The Guardian</b></a> APIs and updates hourly to bring you the latest summarized news.</p>
             <br>
             <h2>Development</h2>
             <br>
-            <h3>Backend</h3>
-            <br>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad aliquid est eius minus debitis dolore nulla, impedit doloremque labore quasi nostrum sed tempora! Ab adipisci repellat voluptates ea nihil deserunt?</p>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad aliquid est eius minus debitis dolore nulla, impedit doloremque labore quasi nostrum sed tempora! Ab adipisci repellat voluptates ea nihil deserunt?</p>
-            <br>
             <h3>Frontend</h3>
             <br>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad aliquid est eius minus debitis dolore nulla, impedit doloremque labore quasi nostrum sed tempora! Ab adipisci repellat voluptates ea nihil deserunt?</p>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad aliquid est eius minus debitis dolore nulla, impedit doloremque labore quasi nostrum sed tempora! Ab adipisci repellat voluptates ea nihil deserunt?</p>
+            <p>The frontend of this website is built using <b class="bold">Node</b>, <b class="bold">Express</b>, and <b class="bold">EJS templating engine</b>.</p>
+            <p>All news from the backend are fetched through <b class="bold">Axios</b> requests and the website is made fully responsive with custom css scripts and <b class="bold">Bootstrap</b>. <b class="bold">jQuery</b> and custom JavaScript are used to achieve infinite horizontal scrolling.</p>
+            <a class="btn btn-0" href="https://github.com/ZhongchiLeoLi/paperboy-front" target="_blank">View Source Code</a>
+            <br>
+            <br>
+            <br>
+            <h3>Backend</h3>
+            <br>
+            <p>The backend of this website is written completely in <b class="bold">Go</b> including a custom, lightweight task scheduler using Go's runtime-reflection to aggregate news periodically.</p>
+            <p><b class="bold">MongoDB</b> was selected, as it allowed for easy storage, management, and querying of data with text. A custom API pagination solution was built using MongoDB. Additionally, a rudimentary search engine was also implemented using MongoDB's <em>searchIndex</em> and fuzzy matching.</p>
+            <p><b class="bold">Redis</b> is used for server-assisted client side caching to improve performance of MongoDB queries.</p>
+            <a class="btn btn-0" href="https://github.com/algao1/paperboy-back" target="_blank">View Source Code</a>
+            <br>
+            <br>
             <br>
             <h3>Deployment</h3>
             <br>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad aliquid est eius minus debitis dolore nulla, impedit doloremque labore quasi nostrum sed tempora! Ab adipisci repellat voluptates ea nihil deserunt?</p>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad aliquid est eius minus debitis dolore nulla, impedit doloremque labore quasi nostrum sed tempora! Ab adipisci repellat voluptates ea nihil deserunt?</p>
+            <p>Both the frontend and backend are containerized using <b class="bold">Docker</b> into Docker Images and the entire project is deployed on <b class="bold">Google Cloud Platform Kubernetes Engine</b>.</p>
+            <br>
 
             <!-- <img src="https://images.unsplash.com/photo-1541613569553-332a2574a508?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80" alt=""> -->
         </div>
