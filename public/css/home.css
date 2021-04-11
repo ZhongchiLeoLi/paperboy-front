@@ -102,7 +102,8 @@ form {
 .home-col {
     margin: 0rem 2rem;
     width: 100%;
-  }
+    overflow: unset;
+}
 
 .home-col:last-child {
     padding-bottom: 5rem;
@@ -144,6 +145,7 @@ form {
     .home-col {
         margin: 0rem 2rem;
         width: 25%;
+        overflow: hidden;
     }
     .home-col:nth-child(8) {
         width: 20%;
