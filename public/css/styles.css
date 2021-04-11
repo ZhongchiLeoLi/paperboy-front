@@ -215,10 +215,10 @@ a, a:hover, a:focus, a:active {
 	border-bottom-color: rgba(255,255,255,0.5);
 	transform: scale(0.1, 1);
 }
-.btn-2:hover {
+.btn-2:hover, .active {
 	letter-spacing: 3px;
 }
-.btn-2:hover::before {
+.btn-2:hover::before, .active::before {
 	opacity: 1;	
 	transform: scale(1, 1);	
 }
@@ -232,7 +232,7 @@ a, a:hover, a:focus, a:active {
 	z-index: 1;
 	transition: all 0.3s;
 }
-.btn-2:hover::after {
+.btn-2:hover::after, .active::after {
 	opacity: 0;	
 	transform: scale(0.1, 1);
 }

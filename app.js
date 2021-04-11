@@ -42,12 +42,12 @@ app.get('/', catchAsync( async function(req, res, next){
     home_news = home_news.concat(result.data.Summaries);
     result = await axios.get(`http://${paperboy_back}:${paperboy_back_port}/api/summaries/environment?size=2`);
     home_news = home_news.concat(result.data.Summaries);
-    res.render('home', {news: home_news});
+    res.render('home', {news: home_news, type: 'home'});
 }))
 
 // About page
 app.get('/about', async function(req,res){
-    res.render('about');
+    res.render('about', {type: 'about'});
 })
 
 // World News page

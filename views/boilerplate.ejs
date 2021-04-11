@@ -19,13 +19,12 @@
                 <h1>Paperboy</h1>
             </div>
             <div class="list-group list-group-flush">
-                <a href="/" class="list-group-item list-group-item-action btn-2">Home</a>
-                <a href="/world" class="list-group-item list-group-item-action btn-2">World</a>
-                <a href="/technology" class="list-group-item list-group-item-action btn-2">Technology</a>
-                <a href="/science" class="list-group-item list-group-item-action btn-2">Science</a>
-                <a href="/environment" class="list-group-item list-group-item-action btn-2">Environment</a>
-                <!-- <a href="#" class="list-group-item list-group-item-action btn-2">Summarizer</a> -->
-                <a href="/about" class="list-group-item list-group-item-action btn-2">About</a>
+                <a href="/" class="list-group-item list-group-item-action btn-2 <%= type == 'home' ? 'active' : ''%>">Home</a>
+                <a href="/world" class="list-group-item list-group-item-action btn-2 <%= type == 'world' ? 'active' : ''%>">World</a>
+                <a href="/technology" class="list-group-item list-group-item-action btn-2 <%= type == 'technology' ? 'active' : ''%>">Technology</a>
+                <a href="/science" class="list-group-item list-group-item-action btn-2 <%= type == 'science' ? 'active' : ''%>">Science</a>
+                <a href="/environment" class="list-group-item list-group-item-action btn-2 <%= type == 'environment' ? 'active' : ''%>">Environment</a>
+                <a href="/about" class="list-group-item list-group-item-action btn-2 <%= type == 'about' ? 'active' : ''%>">About</a>
             </div>
             <div class="sidebar-footer">
                 <p>by</p>
