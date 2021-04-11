@@ -1,4 +1,4 @@
-# paperboy-front
+# Paperboy - Frontend
 
 [**Paperboy**](http://paperboynews.ca) is a news website that automatically aggregates and summarizes news articles from [The Guardian](https://www.theguardian.com) using [basically](https://github.com/algao1/basically). It extracts keywords, removes transition phrases and other unimportant details.
 
